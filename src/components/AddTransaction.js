@@ -5,6 +5,10 @@ const AddTransaction = ({ transactions, setTransactions }) => {
   const [text, setText] = useState("");
   const [amount, setAmount] = useState(0);
 
+  /* TODO: should update the whole income and expense when we update the 
+  whole transaction, this influence by react life-cycle
+  transaction -> income and expense -> balance -> newTransaction
+  */
   const AddTransaction = (e) => {
     e.preventDefault();
     const newTransaction = [

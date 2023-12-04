@@ -28,29 +28,25 @@ const App = () => {
     .reduce((total, item) => (total += item), 0)
     .toFixed(2);
 
-  const [income, setIncome] = useState(initIncome);
-
-  const [expense, setExpense] = useState(initExpense);
-
-  useEffect(() => {
-    setIncome(initIncome);
-
-    setExpense(
-      transactions
-        .filter((transaction) => transaction.amount < 0)
-        .map((transaction) => transaction.amount)
-        .reduce((total, item) => (total += item), 0)
-        .toFixed(2)
+  const deleteTransaction = (id) => {
+    const newTransactions = transactions.filter(
+      (transaction) => transaction.id !== id
     );
-  }, [transactions]);
+    setTransactions(newTransactions);
+    console.log(transactions);
+    console.log(id);
+  };
 
   return (
     <div>
       <Header />
       <div className="container">
         <Balance transactions={transactions} />
-        <IncomeExpense income={income} expense={expense} />
-        <TransactionList transactions={transactions} />
+        <IncomeExpense transactions={transactions} />
+        <TransactionList
+          transactions={transactions}
+          deleteTransaction={deleteTransaction}
+        />
         <AddTransaction
           transactions={transactions}
           setTransactions={setTransactions}

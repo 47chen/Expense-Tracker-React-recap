@@ -1,11 +1,15 @@
 import React from "react";
 
-const Transaction = ({ key, amount, text }) => {
+const Transaction = ({ transaction, deleteTransaction }) => {
+  const { id, text, amount } = transaction;
+
   return (
     <>
-      <li key={key} className={amount > 0 ? "plus" : "minus"}>
+      <li key={id} className={amount > 0 ? "plus" : "minus"}>
         {text} <span> ${amount} </span>
-        <button class="delete-btn">x</button>
+        <button className="delete-btn" onClick={() => deleteTransaction(id)}>
+          x
+        </button>
       </li>
     </>
   );
