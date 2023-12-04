@@ -1,18 +1,10 @@
 import React from "react";
 
-const Transaction = () => {
+const Transaction = ({ key, amount, text }) => {
   return (
     <>
-      <li className="minus">
-        Book <span>-$400</span>
-        <button class="delete-btn">x</button>
-      </li>
-      <li className="plus">
-        Cash <span>+$400</span>
-        <button class="delete-btn">x</button>
-      </li>
-      <li className="plus">
-        Cash <span>+$500</span>
+      <li key={key} className={amount > 0 ? "plus" : "minus"}>
+        {text} <span> ${amount} </span>
         <button class="delete-btn">x</button>
       </li>
     </>
